@@ -1,47 +1,18 @@
 ﻿using System;
-using System.IO;
 using System.Collections.Generic;
-using System.Linq;
+using System.IO;
+using System.Text;
 
 namespace CoderGirl_SalesList
 {
-    public class Program
+    public class SalesRecordAdaptor : ISalesRecordAdapter
     {
-        private string filepath = @"1000 Sales Records.csv";
-
-        public static void Main(string[] args)
+        public List<SalesRecord> GetSalesRecordsFromCsvFile(string filePath)
         {
-            Program program = new Program();
-            program.Run();
-            Console.ReadLine();
-        }
-
-        private void Run()
-        {
-            //List<SalesRecord> salesRecords = GetSalesRecordsFromFileData();
-            //int countNorthAmerica = GetCountForNorthAmerica(salesRecords);
-            //Console.WriteLine(countNorthAmerica);
-        }
-
-        private int GetCountForNorthAmerica(List<SalesRecord> salesRecords)
-        {
-            int count = 0;
-            foreach(SalesRecord record in salesRecords)
-            {
-                if(record.Region == "North America")
-                {
-                    count++;
-                }
-            }
-
-            return count;
-        }
-
-        private List<SalesRecord> GetSalesRecordsFromFileData()
-        {
+            //Can refactor this program to make it work better/more efficient
             List<SalesRecord> salesRecords = new List<SalesRecord>();
             bool isFirstRow = true;
-            foreach (string line in File.ReadLines(@"1000 Sales Records.csv"))
+            foreach (string line in File.ReadLines(filePath))
             {
                 if (isFirstRow)
                 {
@@ -65,8 +36,18 @@ namespace CoderGirl_SalesList
             salesRecord.SalesChannel = properties[3];
             salesRecord.OrderPriority = properties[4];
             salesRecord.OrderDate = DateTime.Parse(properties[5]);
-
+            salesRecord.OrderID = int.Parse(properties[6]);
+            salesRecord.ShipDate = DateTime.Parse(properties[7]);
+            salesRecord.UnitsSold = int.Parse(properties[8]);
+            salesRecord.UnitPrice = decimal.Parse(properties[9]);
+            salesRecord.UnitCost = decimal.Parse(properties[10]);
+            salesRecord.TotalRevenue = decimal.Parse(properties[11]);
+            salesRecord.TotalCost = decimal.Parse(properties[12]);
+            salesRecord.TotalProfit = decimal.Parse(properties[13]);
+            //Adapt all properties (can look up reflection to see a quicker way)
             return salesRecord;
         }
+
+
     }
 }
