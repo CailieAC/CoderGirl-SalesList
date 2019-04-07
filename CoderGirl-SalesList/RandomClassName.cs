@@ -13,10 +13,6 @@ namespace CoderGirl_SalesList
     {
         public bool AreOrderDatesBefore(DateTime cutoffDate, List<SalesRecord> salesRecords)
         {
-            //Just an example for Any, but NOT correct for this method!!
-            //decimal[] profits = { 1.3m, 3.44m, 4.9m };
-            //bool result = salesRecords.Any(record => profits.Contains(record.TotalProfit)).ToList();
-
             return salesRecords.Any(record => record.OrderDate > cutoffDate);
         }
 
@@ -28,27 +24,27 @@ namespace CoderGirl_SalesList
 
         public int GetCountryCount(List<SalesRecord> salesRecords)
         {
-            throw new NotImplementedException();
+            return salesRecords.Select(record => record.Country).Distinct().Count();
         }
 
         public decimal GetMaxProfit(List<SalesRecord> salesRecords)
         {
-            throw new NotImplementedException();
+            return salesRecords.Select(record => record.TotalProfit).Max();
         }
 
         public decimal GetTotalRevenue(List<SalesRecord> salesRecords)
         {
-            throw new NotImplementedException();
+            return salesRecords.Select(record => record.TotalRevenue).Sum();
         }
 
         public List<SalesRecord> OrderByShipDate(List<SalesRecord> salesRecords)
         {
-            throw new NotImplementedException();
+            return salesRecords.OrderBy(record => record.ShipDate).ToList();
         }
 
         public List<SalesRecord> OrderByUnitsSoldDescending(List<SalesRecord> salesRecords)
         {
-            throw new NotImplementedException();
+            return salesRecords.OrderByDescending(record => record.UnitsSold).ToList();
         }
     }
 }

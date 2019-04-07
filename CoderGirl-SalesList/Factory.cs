@@ -14,7 +14,7 @@ namespace CoderGirl_SalesList
         {
             //TODO: Add specific implementation classes
             this.SalesRecordAnalyzer = new RandomClassName();
-            //this.SalesRecordAdapter = new ??
+            this.SalesRecordAdapter = new SalesRecordAdapter();
 
 
         }
