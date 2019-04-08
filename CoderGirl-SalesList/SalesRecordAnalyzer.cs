@@ -9,32 +9,31 @@ namespace CoderGirl_SalesList
     //Finish these methods using LINQ (select, where, any)
     //.Any will return true is anything is true
     
-    class RandomClassName : ISalesRecordAnalyzer
+    class SalesRecordAnalyzer : ISalesRecordAnalyzer
     {
         public bool AreOrderDatesBefore(DateTime cutoffDate, List<SalesRecord> salesRecords)
         {
-            return salesRecords.Any(record => record.OrderDate > cutoffDate);
+            return salesRecords.Any(record => record.OrderDate < cutoffDate);
         }
 
         public List<string> GetCountries(List<SalesRecord> salesRecords)
         {
-            List<string> results = salesRecords.Select(record => record.Country).Distinct().ToList();
-            return results;
+            return salesRecords.Select(record => record.Country).Distinct().ToList();
         }
 
         public int GetCountryCount(List<SalesRecord> salesRecords)
         {
-            return salesRecords.Select(record => record.Country).Distinct().Count();
+            return GetCountries(salesRecords).Count();
         }
 
         public decimal GetMaxProfit(List<SalesRecord> salesRecords)
         {
-            return salesRecords.Select(record => record.TotalProfit).Max();
+            return salesRecords.Max(record => record.TotalProfit);
         }
 
         public decimal GetTotalRevenue(List<SalesRecord> salesRecords)
         {
-            return salesRecords.Select(record => record.TotalRevenue).Sum();
+            return salesRecords.Sum(record => record.TotalRevenue);
         }
 
         public List<SalesRecord> OrderByShipDate(List<SalesRecord> salesRecords)

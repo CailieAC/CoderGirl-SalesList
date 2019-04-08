@@ -19,9 +19,7 @@ namespace CoderGirl_SalesList
                     isFirstRow = false;
                     continue;
                 }
-
-                SalesRecord salesRecord = CreateSalesRecord(line);
-                salesRecordList.Add(salesRecord);
+                salesRecordList.Add(CreateSalesRecord(line));
             }
             return salesRecordList;
         }

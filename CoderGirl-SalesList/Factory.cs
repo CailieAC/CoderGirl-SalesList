@@ -13,10 +13,8 @@ namespace CoderGirl_SalesList
         public Factory()
         {
             //TODO: Add specific implementation classes
-            this.SalesRecordAnalyzer = new RandomClassName();
+            this.SalesRecordAnalyzer = new SalesRecordAnalyzer();
             this.SalesRecordAdapter = new SalesRecordAdapter();
-
-
         }
     }
 }
